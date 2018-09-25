@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./bootstrap.min.css">
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+</head>
+<body>
+    <button id="btn" onclick="gate()">按钮</button>
+    <div id="box" ></div>
+    <style>
+    img{
+        width: 200px;
+    }
+    #btn{
+        position: fixed;
+        left: 0;
+        top: 0;
+    }
+    </style>
+    <script>
+    var xmlhttp=new XMLHttpRequest;
+    var leftshu='https://www.apiopen.top/meituApi?page=';
+    var rightshu='1';
+    var json;
+    function gate(){
+var heshu=leftshu+rightshu;
+xmlhttp.open("get",heshu);
+xmlhttp.send();
+rightshu++;
+    }
+    xmlhttp.onreadystatechange=function(){
+        console.log(xmlhttp.response)
+      console.log(xmlhttp.responseText.data)
+        if(xmlhttp.readyState===4&&xmlhttp.status===200){
+            console.log(xmlhttp.status);
+            console.log(xmlhttp.readyState);
+            json=JSON.parse(xmlhttp.responseText);
+            var x='';
+            for(var i=0;i<json.data.length;i++){
+                // 增加
+                // var imgnode=new Image();
+                // var imgNode=document.createElement('img');
+                // imgNode.src=json.data[i].url;
+                // document.body.appendChild(imgNode);
+                // var x='';
+                // 替换
+                x += '<img src="' + json.data[i].url + '">'
+          document.getElementById('box').innerHTML = x;
+            }
+        }
+    }
+    </script>
+</body>
+</html>

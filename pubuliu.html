@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./bootstrap.min.css">
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+</head>
+<body>
+        <div class="container">
+                <div class="row">
+                <div class="col-xs-3 col001"></div>
+                <div class="col-xs-3 col002"></div>
+                <div class="col-xs-3 col003"></div>
+                <div class="col-xs-3 col004"></div>
+            <button type="button" class="btn btn-danger ann" onclick="gate()">（危险）Danger</button>
+        </div>
+    </div>
+    <style>
+        .container{
+            background: greenyellow;
+        }
+        /* img{
+            width: 200px;
+        } */
+    </style>
+    <script>
+    var shu=1;
+function gate(){
+    $.get("https://www.apiopen.top/meituApi",{'page':shu},
+     function(shuju,xhr){
+var x=shuju;
+console.log(xhr);
+$.each(x.data,function(index,item){
+    // console.log(item);
+    // console.log(index);
+if(index%4===0)
+{
+    $('.col001').append('<img src="'+item.url+'" class="img-thumbnail">')
+}
+else if(index%4===1)
+{
+    $('.col002').append('<img src="'+item.url+'" class="img-thumbnail">')
+}
+else if(index%4===2)
+{
+    $('.col003').append('<img src="'+item.url+'" class="img-thumbnail">')
+}
+else if(index%4===3)
+{
+    $('.col004').append('<img src="'+item.url+'" class="img-thumbnail">')
+}
+})
+     },
+     );
+     shu++;
+}
+gate();
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./jquery.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+   <div class="box">
+   	<span>aaa</span>
+   	<i></i>
+   </div>
+   <style type="text/css">
+   	.box{
+   		width: 200px;
+   		height: 50px;
+   		border: 1px solid black;
+   		position: relative;
+   		background: orange;
+   		overflow: hidden;
+   	}
+   	span{
+   		position: relative;
+   		z-index: 1;
+   		display: block;
+   		line-height: 50px;
+   		text-align: center;
+   		color: white;
+   		font-size: 24px;
+   		
+   	}
+   	i{
+   		/*z-index: -1;*/
+   		position: absolute;
+   		top: 0;
+   		left: 0;
+   		width: 100px;
+   		height: 100px;
+   		background: red;
+   		border-radius: 50%;
+   		transform: scale(0);
+   		transition: all .5s;
+   		display: block;	
+   	}
+   	.box.hover i{
+   		transform: scale(5);
+   	}
+   </style>
+   <script>
+$('.box').hover(function(ev){
+	$('i').css({
+		top:(ev.clientY-$('.box').offset().top-50),
+		left:(ev.clientX-$('.box').offset().left-50)
+	})
+	$('.box').addClass('hover');
+},function(){
+	$('.box').removeClass('hover');
+})
+
+   </script>
+</body>
+
+</html>
